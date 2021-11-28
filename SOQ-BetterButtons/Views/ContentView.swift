@@ -14,23 +14,14 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                ShowArrayOneButton(
-                    showArrayOne: $vm.showArrayOne,
-                    showArrayTwo: $vm.showArrayTwo,
-                    showArrayThree: $vm.showArrayThree)
-                    .onChange(of: vm.showArrayOne){ _ in vm.getArray()}
                 
-                ShowArrayTwoButton(
-                    showArrayOne: $vm.showArrayOne,
-                    showArrayTwo: $vm.showArrayTwo,
-                    showArrayThree: $vm.showArrayThree)
-                    .onChange(of: vm.showArrayTwo){ _ in vm.getArray()}
-                
-                ShowArrayThreeButton(
-                    showArrayOne: $vm.showArrayOne,
-                    showArrayTwo: $vm.showArrayTwo,
-                    showArrayThree: $vm.showArrayThree)
-                    .onChange(of: vm.showArrayThree){ _ in vm.getArray()}
+                SortButton(name: .arrayOne, bools: $vm.bools)
+                    .onChange(of: vm.bools["arrayOne"]){ _ in vm.getArray()}
+                SortButton(name: .arrayTwo, bools: $vm.bools)
+                    .onChange(of: vm.bools){ _ in vm.getArray()}
+                SortButton(name: .arrayThree, bools: $vm.bools)
+                    .onChange(of: vm.bools){ _ in vm.getArray()}
+            
             }
             
             List {
@@ -39,7 +30,10 @@ struct ContentView: View {
                 }
                 
             }
-        }.onAppear {vm.getArray()}
+        }
+        .onAppear {vm.setButtons()}
+        .onAppear {vm.getArray()}
+        
     }
 }
 

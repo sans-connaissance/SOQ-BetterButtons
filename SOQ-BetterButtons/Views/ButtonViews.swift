@@ -8,7 +8,12 @@
 import SwiftUI
 
 
+
 struct ShowArrayOneButton: View {
+    
+    //I think I need to use ENUMs instead -- check Hacking with Swift thing
+//    @Binding var buttonName: String
+//    @Binding var dictOfBools: [String : Bool]
     
     @Binding var showArrayOne: Bool
     @Binding var showArrayTwo: Bool
@@ -76,5 +81,51 @@ struct ShowArrayThreeButton: View {
 }
 
 
+//
+//enum Select: String, CaseIterable {
+//    case arrayOne, arrayTwo, arrayThree
+//
+//    var returnText: String {
+//        switch self {
+//        case .arrayOne:
+//            return "arrayOne"
+//        case .arrayTwo:
+//            return "arrayTwo"
+//        case .arrayThree:
+//            return "arrayThree"
+//        }
+//    }
+//}
 
+
+struct SortButton: View {
+    
+    var name: Select
+    @Binding var bools: [String : Bool]
+
+
+    
+    var body: some View {
+        Button {
+            func show(button: Select) {
+                Select.allCases.forEach { button in
+                    bools[button.rawValue] = false
+                }
+                
+                bools[button.rawValue] = true
+            }
+            
+        } label: {
+            Text(name.rawValue)
+//                .foregroundColor(dictOfBools[buttonCase.rawValue] ? .blue : .gray)
+        }
+        
+    }
+}
+
+enum Select: String, CaseIterable {
+    case arrayOne = "arrayOne"
+    case arrayTwo = "arrayTwo"
+    case arrayThree = "arrayThree"
+}
 

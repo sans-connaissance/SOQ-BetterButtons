@@ -10,32 +10,51 @@ import Foundation
 class ContentViewModel: ObservableObject {
     
     @Published var contentArray = [String]()
+    @Published var bools = [String : Bool]()
     
-    @Published var showArrayOne = true
-    @Published var showArrayTwo = false
-    @Published var showArrayThree = false
     
     private let arrayOne = ["One", "Two", "Three"]
     private let arrayTwo = ["Four", "Five", "Six"]
     private let arrayThree = ["Seven", "Eight", "Nine"]
     
+
+    
+    func setButtons() {
+        
+        Select.allCases.forEach { button in
+            bools[button.rawValue] = false
+        }
+        
+     //   bools["arrayOne"] = true
+    }
+    
     func getArray() {
         
-        if showArrayOne {
+        if bools["arrayOne"]! {
             contentArray.removeAll()
             contentArray.append(contentsOf: arrayOne)
         }
         
-        if showArrayTwo {
+        if bools["arrayTwo"]! {
             contentArray.removeAll()
             contentArray.append(contentsOf: arrayTwo)
         }
         
-        if showArrayThree {
+        if bools["arrayThree"]! {
             contentArray.removeAll()
             contentArray.append(contentsOf: arrayThree)
         }
         
     }
+    
+
+    
+//    func show(button: Select) {
+//        Select.allCases.forEach { button in
+//            bools[button.rawValue] = false
+//        }
+//
+//        bools[button.rawValue] = true
+//    }
     
 }
