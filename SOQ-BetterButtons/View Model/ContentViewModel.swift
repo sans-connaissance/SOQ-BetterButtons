@@ -17,7 +17,6 @@ class ContentViewModel: ObservableObject {
     private let arrayTwo = ["Four", "Five", "Six"]
     private let arrayThree = ["Seven", "Eight", "Nine"]
     
-
     
     func setButtons() {
         
@@ -25,8 +24,9 @@ class ContentViewModel: ObservableObject {
             bools[button.rawValue] = false
         }
         
-     //   bools["arrayOne"] = true
+        bools["arrayOne"] = true
     }
+    
     
     func getArray() {
         
@@ -48,13 +48,6 @@ class ContentViewModel: ObservableObject {
     }
     
 
-    
-//    func show(button: Select) {
-//        Select.allCases.forEach { button in
-//            bools[button.rawValue] = false
-//        }
-//
-//        bools[button.rawValue] = true
-//    }
-    
 }
+
+

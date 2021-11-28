@@ -11,12 +11,14 @@ struct ContentView: View {
     
     @StateObject private var vm = ContentViewModel()
     
+    
     var body: some View {
+        
         VStack {
             HStack {
                 
                 SortButton(name: .arrayOne, bools: $vm.bools)
-                    .onChange(of: vm.bools["arrayOne"]){ _ in vm.getArray()}
+                    .onChange(of: vm.bools){ _ in vm.getArray()}
                 SortButton(name: .arrayTwo, bools: $vm.bools)
                     .onChange(of: vm.bools){ _ in vm.getArray()}
                 SortButton(name: .arrayThree, bools: $vm.bools)
@@ -37,8 +39,4 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+
