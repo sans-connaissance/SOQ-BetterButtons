@@ -10,33 +10,20 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject private var vm = ContentViewModel()
-    
-    
+
     var body: some View {
-        
         VStack {
             HStack {
-                
-                SortButton(name: .arrayOne, bools: $vm.bools)
-                    .onChange(of: vm.bools){ _ in vm.getArray()}
-                SortButton(name: .arrayTwo, bools: $vm.bools)
-                    .onChange(of: vm.bools){ _ in vm.getArray()}
-                SortButton(name: .arrayThree, bools: $vm.bools)
-                    .onChange(of: vm.bools){ _ in vm.getArray()}
-            
+                ForEach(Select.allCases, id: \.self) { name in
+                    SortButton(name: name, vm: vm)
+                }
             }
-            
             List {
                 ForEach(vm.contentArray, id: \.self) { content in
                     Text(content.self)
                 }
-                
             }
         }
-        .onAppear {vm.setButtons()}
-        .onAppear {vm.getArray()}
-        
     }
 }
-
 

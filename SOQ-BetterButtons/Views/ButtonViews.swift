@@ -8,30 +8,19 @@
 import SwiftUI
 
 struct SortButton: View {
-    
     var name: Select
-    @Binding var bools: [String : Bool]
-
+    let vm: ContentViewModel
+    
     var body: some View {
         Button {
-            func show(button: Select) {
-                Select.allCases.forEach { button in
-                    bools[button.rawValue] = false
-                }
-                
-                bools[button.rawValue] = true
-            }
-            
+            vm.updateContentArray(select: name)
         } label: {
             Text(name.rawValue)
         }
-        
     }
 }
 
 enum Select: String, CaseIterable {
-    case arrayOne = "arrayOne"
-    case arrayTwo = "arrayTwo"
-    case arrayThree = "arrayThree"
+    case arrayOne, arrayTwo, arrayThree
 }
 
